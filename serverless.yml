@@ -1,0 +1,31 @@
+service: omie-teste
+provider:
+  name: aws
+  runtime: python3.9
+
+plugins:
+  - serverless-offline  
+
+custom:
+  serverless-offline:
+    host: 0.0.0.0  
+
+functions:
+  getTasks:
+    handler: functions/handler.get
+    events:
+      - http:
+          path: /tasks
+          method: get
+  postTask:
+    handler: functions/handler.post
+    events:
+      - http:
+          path: /tasks
+          method: post
+  deleteTask:
+    handler: functions/handler.delete
+    events:
+      - http:
+          path: /tasks
+          method: delete
